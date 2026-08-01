@@ -1,0 +1,134 @@
+body {
+    background-color: #f4f1ea; /* Soft paper-like background */
+    margin: 0;
+    padding: 0;
+    font-family: 'Lora', serif;
+    color: #333;
+    overflow-x: hidden; /* Prevents scrollbars during animations */
+}
+
+/* --- Envelope / Opening Screen --- */
+.envelope-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2c3e50; /* Initial dark envelope color */
+    color: white;
+    cursor: pointer;
+    transition: opacity 1.5s ease-out;
+    position: relative;
+    overflow: hidden; /* Contains floating particles */
+}
+
+.envelope-content {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    z-index: 10; /* Ensures text is always on top */
+}
+
+.envelope-content h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.envelope-content p {
+    font-style: italic;
+    opacity: 0.8;
+}
+
+/* Gently floating background particles on envelope screen */
+.floating-particle {
+    position: absolute;
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.4); /* Subtle white particles */
+    animation: floatAround 10s infinite linear;
+    pointer-events: none; /* Can click through them */
+}
+
+@keyframes floatAround {
+    0% { transform: translateY(0vh) translateX(0vw); opacity: 0; }
+    20% { opacity: 0.6; }
+    80% { opacity: 0.6; }
+    100% { transform: translateY(-100vh) translateX(20vw); opacity: 0; }
+}
+
+/* --- Explosion Particles (on Click) --- */
+.particle-burst {
+    position: absolute;
+    pointer-events: none;
+    z-index: 5;
+    animation: explodeFade 1.2s ease-out forwards;
+}
+
+@keyframes explodeFade {
+    0% { transform: translate(0, 0) scale(1); opacity: 1; }
+    100% { transform: translate(var(--tx), var(--ty)) scale(var(--s)); opacity: 0; }
+}
+
+/* --- Letter Container (Content pages) --- */
+.letter-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 40px;
+    background: white; /* Pages remain plain white */
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.1);
+    line-height: 1.6;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    position: relative; /* New base for content particles */
+}
+
+.title {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin: 60px 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.fade-in {
+    display: block !important;
+    animation: fadeIn 2s forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Final Page Formatting (Italicization) --- */
+.final-page {
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+}
+
+/* This targets the final question only */
+.proposal-question {
+    font-style: italic; /* <--- This makes it italic */
+    color: #4a4a4a; /* Slightly softer color */
+    font-size: 1.8rem;
+    opacity: 0.9;
+}
+
+.lyrics {
+    text-align: center;
+    font-style: italic;
+    margin-top: -5px;
+    margin-bottom: 30px;
+    color: #555;
+    line-height: 1.4;
+}
